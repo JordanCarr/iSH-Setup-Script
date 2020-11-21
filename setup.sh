@@ -41,6 +41,7 @@ g++
 gcc
 gcc-doc
 git
+git-doc
 git-bash-completion
 m4
 make
@@ -59,6 +60,7 @@ ffmpeg
 htop
 lynx
 mediainfo
+openssh
 p7zip
 rtmpdump
 samba-common
