@@ -2,7 +2,7 @@
 #title		: setup.sh
 #description	: Installs and configures packages in iSH to a useful baseline
 #author		: Jordan Carr
-#version	: 2020.11.21
+#version	: 2020.11.21.1
 #usage		: sh setup.sh
 #notes		: Bad things happening are a possibility.
 #===============================================================================
@@ -117,5 +117,19 @@ echo "START: Install pip programs"
 pip3 install $PIP_PROGRAMS
 echo "DONE: Install pip programs"
 echo ""
+
+echo "START: Compile and install par2cmdline"
+mkdir Code
+cd Code
+git clone "https://github.com/Parchive/par2cmdline.git"
+cd par2cmdline
+autoreconf -fis
+sh configure
+make
+make check
+make install
+make distclean
+cd
+echo "DONE: Compile and install par2cmdline"
 
 echo "DONE: Setup script"
