@@ -2,7 +2,7 @@
 #title		: setup.sh
 #description	: Installs and configures packages in iSH to a useful baseline
 #author		: Jordan Carr
-#version	: 2020.11.20.1
+#version	: 2020.11.21
 #usage		: sh setup.sh
 #notes		: Bad things happening are a possibility.
 #===============================================================================
@@ -30,6 +30,7 @@ tmux
 
 SOFTWARE_COMPILATION_PROGRAMS="
 automake
+autoconf
 binutils
 binutils-doc
 ccache
