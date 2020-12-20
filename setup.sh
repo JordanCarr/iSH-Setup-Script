@@ -2,7 +2,7 @@
 #title		: setup.sh
 #description	: Installs and configures packages in iSH to a useful baseline
 #author		: Jordan Carr
-#version	: 2020.11.21
+#version	: 2020.12.19
 #usage		: sh setup.sh
 #notes		: Bad things happening are a possibility.
 #===============================================================================
@@ -70,9 +70,9 @@ samba-common
 speedtest-cli
 "
 
-# PIP_PROGRAMS="
-# youtube-dl
-# "
+PIP_PROGRAMS="
+youtube-dl
+"
 
 echo "START: Setup script"
 echo ""
@@ -100,6 +100,10 @@ sed -i "s|/bin/ash|/bin/bash|g" /etc/passwd
 echo "DONE: Change default shell from ash to bash"
 echo ""
 
+echo "START: Setup bash shell"
+cp .bash_profile ~/.bash_profile
+cp .bashrc ~/.bashrc
+
 echo "START: Install software compilation programs"
 apk add $SOFTWARE_COMPILATION_PROGRAMS
 echo "DONE: Install software compilation programs"
@@ -115,15 +119,15 @@ apk add $UTILITY_PROGRAMS
 echo "DONE: Install utility programs"
 echo ""
 
-# echo "START: Install pip programs"
-# pip3 install $PIP_PROGRAMS
-# echo "DONE: Install pip programs"
-# echo ""
-
-echo "START: Install youtube-dl"
-sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-sudo chmod a+rx /usr/local/bin/youtube-dl
-echo "DONE: Install youtube-dl"
+echo "START: Install pip programs"
+pip3 install $PIP_PROGRAMS
+echo "DONE: Install pip programs"
 echo ""
+
+# echo "START: Install youtube-dl"
+# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+# chmod a+rx /usr/local/bin/youtube-dl
+# echo "DONE: Install youtube-dl"
+# echo ""
 
 echo "DONE: Setup script"
