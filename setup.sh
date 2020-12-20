@@ -2,7 +2,7 @@
 #title		: setup.sh
 #description	: Installs and configures packages in iSH to a useful baseline
 #author		: Jordan Carr
-#version	: 2020.12.19
+#version	: 2020.12.19.1
 #usage		: sh setup.sh
 #notes		: Bad things happening are a possibility.
 #===============================================================================
@@ -103,6 +103,8 @@ echo ""
 echo "START: Setup bash shell"
 cp .bash_profile ~/.bash_profile
 cp .bashrc ~/.bashrc
+echo "DONE: Setup bash shell"
+echo ""
 
 echo "START: Install software compilation programs"
 apk add $SOFTWARE_COMPILATION_PROGRAMS
