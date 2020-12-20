@@ -70,16 +70,18 @@ samba-common
 speedtest-cli
 "
 
-PIP_PROGRAMS="
-youtube-dl
-"
+# PIP_PROGRAMS="
+# youtube-dl
+# "
 
 echo "START: Setup script"
 echo ""
 
-echo "START: Install apk"
-wget -qO- http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86/apk-tools-static-2.10.5-r1.apk | tar -xz sbin/apk.static && ./sbin/apk.static add apk-tools && rm sbin/apk.static && rmdir sbin 2> /dev/null
-echo "DONE: Install apk"
+echo "START: Install Alpine Linux apk"
+grep -v "file:///ish/apk/" /etc/apk/repositories | dd of=/etc/apk/repositories bs=4194304
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main >> /etc/apk/repositories
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
+echo "DONE: Install Alpine Linux apk"
 echo ""
 
 echo "START: Update and upgrade programs with apk"
@@ -113,9 +115,15 @@ apk add $UTILITY_PROGRAMS
 echo "DONE: Install utility programs"
 echo ""
 
-echo "START: Install pip programs"
-pip3 install $PIP_PROGRAMS
-echo "DONE: Install pip programs"
+# echo "START: Install pip programs"
+# pip3 install $PIP_PROGRAMS
+# echo "DONE: Install pip programs"
+# echo ""
+
+echo "START: Install youtube-dl"
+sudo curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+echo "DONE: Install youtube-dl"
 echo ""
 
 echo "DONE: Setup script"
