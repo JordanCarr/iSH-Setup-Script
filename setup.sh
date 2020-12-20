@@ -2,7 +2,7 @@
 #title		: setup.sh
 #description	: Installs and configures packages in iSH to a useful baseline
 #author		: Jordan Carr
-#version	: 2020.11.21
+#version	: 2020.12.19.1
 #usage		: sh setup.sh
 #notes		: Bad things happening are a possibility.
 #===============================================================================
@@ -77,9 +77,11 @@ youtube-dl
 echo "START: Setup script"
 echo ""
 
-echo "START: Install apk"
-wget -qO- http://dl-cdn.alpinelinux.org/alpine/v3.12/main/x86/apk-tools-static-2.10.5-r1.apk | tar -xz sbin/apk.static && ./sbin/apk.static add apk-tools && rm sbin/apk.static && rmdir sbin 2> /dev/null
-echo "DONE: Install apk"
+echo "START: Install Alpine Linux apk"
+grep -v "file:///ish/apk/" /etc/apk/repositories | dd of=/etc/apk/repositories bs=4194304
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main >> /etc/apk/repositories
+echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
+echo "DONE: Install Alpine Linux apk"
 echo ""
 
 echo "START: Update and upgrade programs with apk"
@@ -96,6 +98,12 @@ echo ""
 echo "START: Change default shell from ash to bash"
 sed -i "s|/bin/ash|/bin/bash|g" /etc/passwd
 echo "DONE: Change default shell from ash to bash"
+echo ""
+
+echo "START: Setup bash shell"
+cp .bash_profile ~/.bash_profile
+cp .bashrc ~/.bashrc
+echo "DONE: Setup bash shell"
 echo ""
 
 echo "START: Install software compilation programs"
@@ -117,5 +125,11 @@ echo "START: Install pip programs"
 pip3 install $PIP_PROGRAMS
 echo "DONE: Install pip programs"
 echo ""
+
+# echo "START: Install youtube-dl"
+# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+# chmod a+rx /usr/local/bin/youtube-dl
+# echo "DONE: Install youtube-dl"
+# echo ""
 
 echo "DONE: Setup script"
