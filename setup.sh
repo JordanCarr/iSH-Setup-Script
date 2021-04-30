@@ -13,13 +13,11 @@ bash-completion
 bash-doc
 coreutils
 findutils
-vim
 less
 less-doc
 man-pages
 mandoc
 shadow
-tmux
 "
 
 #These programs appear to increase the liklihood of a crash at this stage
@@ -56,29 +54,10 @@ py3-pip-bash-completion
 py3-pip-doc
 "
 
-UTILITY_PROGRAMS="
-curl
-ffmpeg
-htop
-lynx
-mediainfo
-openssh
-p7zip
-rsync
-rtmpdump
-samba-common
-speedtest-cli
-"
-
-PIP_PROGRAMS="
-youtube-dl
-"
-
+UTILITY_PROGRAMS
 echo "START: Setup script"
 echo ""
 
-echo "START: Install Alpine Linux apk"
-grep -v "file:///ish/apk/" /etc/apk/repositories | dd of=/etc/apk/repositories bs=4194304
 echo https://dl-cdn.alpinelinux.org/alpine/v3.13/main >> /etc/apk/repositories
 echo https://dl-cdn.alpinelinux.org/alpine/v3.13/community >> /etc/apk/repositories
 echo "DONE: Install Alpine Linux apk"
@@ -125,11 +104,5 @@ echo "START: Install pip programs"
 pip3 install $PIP_PROGRAMS
 echo "DONE: Install pip programs"
 echo ""
-
-# echo "START: Install youtube-dl"
-# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-# chmod a+rx /usr/local/bin/youtube-dl
-# echo "DONE: Install youtube-dl"
-# echo ""
 
 echo "DONE: Setup script"
