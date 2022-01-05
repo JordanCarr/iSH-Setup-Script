@@ -2,7 +2,7 @@
 #title		: setup.sh
 #description	: Installs and configures packages in iSH to a useful baseline
 #author		: Jordan Carr
-#version	: 2020.12.19.1
+#version	: 2022.01.05
 #usage		: sh setup.sh
 #notes		: Bad things happening are a possibility.
 #===============================================================================
@@ -78,9 +78,9 @@ echo "START: Setup script"
 echo ""
 
 echo "START: Install Alpine Linux apk"
-grep -v "file:///ish/apk/" /etc/apk/repositories | dd of=/etc/apk/repositories bs=4194304
-echo https://dl-cdn.alpinelinux.org/alpine/v3.12/main >> /etc/apk/repositories
-echo https://dl-cdn.alpinelinux.org/alpine/v3.12/community >> /etc/apk/repositories
+echo https://dl-cdn.alpinelinux.org/alpine/v3.14/main >> /etc/apk/repositories
+echo https://dl-cdn.alpinelinux.org/alpine/v3.14/community >> /etc/apk/repositories
+sed -i -e '/http:\/\/apk.ish.app/d' /etc/apk/repositories
 echo "DONE: Install Alpine Linux apk"
 echo ""
 
@@ -101,8 +101,8 @@ echo "DONE: Change default shell from ash to bash"
 echo ""
 
 echo "START: Setup bash shell"
-cp .bash_profile ~/.bash_profile
-cp .bashrc ~/.bashrc
+cp bash_profile ~/.bash_profile
+cp bashrc ~/.bashrc
 echo "DONE: Setup bash shell"
 echo ""
 
