@@ -116,20 +116,25 @@ apk add $PYTHON_PROGRAMS
 echo "DONE: Install python programs"
 echo ""
 
+echo "START: Setup python3 symlink"
+ln -s /usr/bin/python3 /usr/bin/python
+echo "DONE: Setup python3 symlink "
+echo ""
+
 echo "START: Install utility programs"
 apk add $UTILITY_PROGRAMS
 echo "DONE: Install utility programs"
 echo ""
 
-echo "START: Install pip programs"
-pip3 install $PIP_PROGRAMS
-echo "DONE: Install pip programs"
-echo ""
-
-# echo "START: Install youtube-dl"
-# curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
-# chmod a+rx /usr/local/bin/youtube-dl
-# echo "DONE: Install youtube-dl"
+# echo "START: Install pip programs"
+# pip3 install $PIP_PROGRAMS
+# echo "DONE: Install pip programs"
 # echo ""
+
+echo "START: Install youtube-dl"
+curl -L https://yt-dl.org/downloads/latest/youtube-dl -o /usr/local/bin/youtube-dl
+chmod a+rx /usr/local/bin/youtube-dl
+echo "DONE: Install youtube-dl"
+echo ""
 
 echo "DONE: Setup script"
